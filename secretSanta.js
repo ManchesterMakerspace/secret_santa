@@ -11,7 +11,7 @@ var slack = {
         slack.santa = new slack.webhook(webhook_URL, properties);
     },
     sendAsSanta: function(msg){
-        slack.santa.webhook.send(msg);
+        slack.santa.send(msg);
     }
 };
 
