@@ -18,6 +18,7 @@
     },
     "homepage": "https://github.com/ManchesterMakerspace/secret_santa#readme",
     "dependencies": {
+        "@slack/client": "^3.14.0",
         "body-parser": "^1.18.2",
         "express": "^4.16.1"
     },

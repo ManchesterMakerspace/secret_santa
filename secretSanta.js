@@ -1,5 +1,20 @@
 // secretSanta.js ~ Copyright 2017 Manchester Makerspace ~ MIT License
 
+var slack = {
+    webhook: require('@slack/client').IncomingWebhook,   // url to slack intergration called "webhook" can post to any channel as a "bot"
+    init: function(webhook_URL){
+        properties = {
+            username: 'Santa',
+            channel: 'santas_little_helper',
+            iconEmoji: ':santa:'
+        };
+        slack.santa = new slack.webhook(webhook_URL, properties);
+    },
+    sendAsSanta: function(msg){
+        slack.santa.webhook.send(msg);
+    }
+};
+
 var route = {
     santa: function(){
         return function(req, res){
@@ -7,6 +22,7 @@ var route = {
                 res.status(200).send('Santa is comming!');res.end();             // ACK notification
                 // console.log(JSON.stringify(req.body, null, 4));
                 console.log(req.body.text);
+                slack.sendAsSanta(req.body.text);
             }
         };
     }
@@ -29,4 +45,4 @@ var serve = {                                                // handles express 
 
 var http = serve.theSite();
 http.listen(process.env.PORT);
-// slack.init();
+slack.init();
