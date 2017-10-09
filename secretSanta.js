@@ -45,4 +45,4 @@ var serve = {                                                // handles express 
 
 var http = serve.theSite();
 http.listen(process.env.PORT);
-slack.init();
+slack.init(process.env.SLACK_WEBHOOK_URL);
