@@ -1,0 +1,24 @@
+{
+    "name": "secret_santa",
+    "version": "1.0.0",
+    "description": "Slack slash intergration",
+    "main": "secretSanta.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "node secretSanta.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+ssh://git@github.com/ManchesterMakerspace/secret_santa.git"
+    },
+    "author": "Manchester Makerspace",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/ManchesterMakerspace/secret_santa/issues"
+    },
+    "homepage": "https://github.com/ManchesterMakerspace/secret_santa#readme",
+    "dependencies": {
+        "body-parser": "^1.18.2",
+        "express": "^4.16.1"
+    }
+}
