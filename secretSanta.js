@@ -2,16 +2,16 @@
 
 var slack = {
     webhook: require('@slack/client').IncomingWebhook,   // url to slack intergration called "webhook" can post to any channel as a "bot"
-    init: function(webhook_URL){
+    URL: process.env.SLACK_WEBHOOK_URL,
+    santaSend: function(msg, channel){
         properties = {
             username: 'Santa',
-            channel: 'santas_little_helper',
+            channel: channel,
             iconEmoji: ':santa:'
         };
-        slack.santa = new slack.webhook(webhook_URL, properties);
-    },
-    sendAsSanta: function(msg){
-        slack.santa.send(msg);
+        if(channel !== 'privategroup'){properties.channel = 'santas_little_helper';}
+        var santa = new slack.webhook(slack.URL, properties);
+        santa.send(msg);
     }
 };
 
@@ -21,7 +21,7 @@ var route = {
             if(req.body){
                 res.status(200).send('Santa is comming!');res.end();             // ACK notification
                 console.log(JSON.stringify(req.body, null, 4));
-                slack.sendAsSanta(req.body.text);
+                slack.santaSend(req.body.text, req.body.channel_name);
             }
         };
     }
@@ -44,4 +44,3 @@ var serve = {                                                // handles express 
 
 var http = serve.theSite();
 http.listen(process.env.PORT);
-slack.init(process.env.SLACK_WEBHOOK_URL);
