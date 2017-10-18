@@ -20,8 +20,7 @@ var route = {
         return function(req, res){
             if(req.body){
                 res.status(200).send('Santa is comming!');res.end();             // ACK notification
-                // console.log(JSON.stringify(req.body, null, 4));
-                console.log(req.body.text);
+                console.log(JSON.stringify(req.body, null, 4));
                 slack.sendAsSanta(req.body.text);
             }
         };
