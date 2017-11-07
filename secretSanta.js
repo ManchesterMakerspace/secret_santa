@@ -9,7 +9,7 @@ var slack = {
             channel: channel,
             iconEmoji: ':santa:'
         };
-        if(channel === 'privategroup'){properties.channel = 'santas_little_helper';}
+        if(channel === 'privategroup'){properties.channel = 'test_channel';}
         var santa = new slack.webhook(slack.URL, properties);
         santa.send(msg);
     }
